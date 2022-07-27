@@ -1,17 +1,18 @@
 # encoding: utf-8
 #
-# Класс-родитель Товар, у которого есть цена и остаток на складе. От этого
-# класса мы будем наследовать все другие товары.
+# Класс Товар
 class Product
-  # У любого экземпляра класса Товар будут как минимум две переменные — цена
-  # и количество единиц товара на складе
-  attr_reader :price, :amount
+  attr_writer :price, :amount
 
-  # Конструктор товара записывает, сколько стоит товар и сколько осталось
   def initialize(params)
     @price = params[:price]
     @amount = params[:amount]
   end
   def to_s
+    "#{@price} руб. Осталось #{@amount}шт."
+  end
+  def update(params)
+    @price = params[:price] if params[:price]
+    @amount = params[:amount] if params[:amount]
   end
 end

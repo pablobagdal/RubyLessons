@@ -1,10 +1,5 @@
 # encoding: utf-8
-#
-# Программа-магазин книг и фильмов. Версия 0.1 — заготовка.
-#
-# (с) goodprogrammer.ru
-#
-# Этот код необходим только при использовании русских букв на Windows
+
 if Gem.win_platform?
   Encoding.default_external = Encoding.find(Encoding.locale_charmap)
   Encoding.default_internal = __ENCODING__
@@ -25,6 +20,12 @@ leon = Film.new(price: 990, amount: 5, name: "Leon", director: "Luc Besson", yea
 idiot = Book.new(price: 990, amount: 5, name: "Idiot", genre: "Novel", author: "Dostoevskiy")
 # Просто чтобы не скучать выведем это в консоль
 # puts "Фильм Леон стоит #{leon.price} руб."
+
+idiot.genre = "lalal"
+idiot.update(author: "Pushkin")
+
+# leon.amount = 999
+# leon.update(director: "Jicalo")
 
 puts leon
 puts idiot

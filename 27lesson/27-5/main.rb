@@ -14,18 +14,15 @@ require_relative 'lib/product.rb'
 require_relative 'lib/book.rb'
 require_relative 'lib/film.rb'
 
-# Пока функционал у нас очень простой, но фильм мы создать уже можем. Создадим
-# новый товар — фильм за 990 рублей, и скажем, на складе их осталось 5 штук.
-leon = Film.new(price: 990, amount: 5, name: "Leon", director: "Luc Besson", year: "1994")
-idiot = Book.new(price: 990, amount: 5, name: "Idiot", genre: "Novel", author: "Dostoevskiy")
-# Просто чтобы не скучать выведем это в консоль
-# puts "Фильм Леон стоит #{leon.price} руб."
 
-idiot.genre = "lalal"
-idiot.update(author: "Pushkin")
-
-# leon.amount = 999
-# leon.update(director: "Jicalo")
+leon = Film.from_file("#{__dir__}/data/films/01.txt")
+idiot = Book.from_file("#{__dir__}/data/books/01.txt")
 
 puts leon
 puts idiot
+
+begin
+  some_product = Product.from_file("/doesn't matter what the path is here")
+rescue NotImplementedError => e
+  puts "You can not create object of Product this way. Try use standart constructor(Product.new())"
+end

@@ -20,3 +20,5 @@ person2 = {name: "Анна", age: 66, :gender => :female}
 
 happy_birthday(person1)
 happy_birthday(person2)
+
+

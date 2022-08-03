@@ -1,5 +1,10 @@
 #
 # Класс Коллекция Товаров
+
+require_relative 'book.rb'
+require_relative 'film.rb'
+require_relative 'disc.rb'
+
 class ProductCollection
   # Создадим константу со всеми возможными типами продуктов. Это ассоциативный
   # массив, где ключем является символ, а значением — другой ассоциативный
@@ -7,7 +12,7 @@ class ProductCollection
   PRODUCT_TYPES = {
     film: {dir: 'films', class: Film},
     book: {dir: 'books', class: Book},
-    disk: {dir: 'disks', class: Disk},
+    disc: {dir: 'discs', class: Disc},
   }
 
   # Конструктор коллекции принимает на вход массив продуктов, но если ничего не

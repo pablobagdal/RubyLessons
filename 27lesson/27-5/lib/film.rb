@@ -1,11 +1,14 @@
 # encoding: utf-8
 #
 # Класс Фильм
+
+require_relative 'product.rb'
+
 class Film < Product
   attr_accessor :name, :year, :director
 
   def self.from_file(file_path)
-    lines = File.readlines(file_path, encoding: 'UTF-8').map { |line| line.chomp }
+    lines = File.readlines(file_path, encoding: 'UTF-8', chomp: true)
 
     self.new(
       name: lines[0],

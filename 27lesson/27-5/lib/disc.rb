@@ -1,13 +1,16 @@
 #
 # класс Диск
-class Disk < Product
-  attr_accessor :year, :genre, :author, :album_name
 
-    def self.from_file(file_path)
-    lines = File.readlines(file_path, encoding: 'UTF-8').map { |line| line.chomp }
+require_relative 'product.rb'
+
+class Disc < Product
+  attr_accessor :year, :genre, :author, :title
+
+  def self.from_file(file_path)
+    lines = File.readlines(file_path, encoding: 'UTF-8', chomp: true)
 
     self.new(
-      album_name: lines[0],
+      title: lines[0],
       author: lines[1],
       genre: lines[2],
       year: lines[3].to_i,
@@ -22,11 +25,11 @@ class Disk < Product
     @year = params[:year].to_i
     @genre = params[:genre]
     @author = params[:author]
-    @album_name = params[:album_name]
+    @title = params[:title]
   end
 
   def to_s
-    "Альбом #{@author} — «#{@album_name}», #{@genre}, #{@year}, #{@price} руб. (осталось #{@amount})"
+    "Альбом #{@author} — «#{@title}», #{@genre}, #{@year}, #{@price} руб. (осталось #{@amount})"
   end
 
   def update(params)
@@ -35,6 +38,6 @@ class Disk < Product
     @year = params[:year].to_i if params[:year]
     @genre = params[:genre] if params[:genre]
     @author = params[:author] if params[:author]
-    @album_name = params[:album_name] if params[:album_name]
+    @title = params[:title] if params[:title]
   end
 end

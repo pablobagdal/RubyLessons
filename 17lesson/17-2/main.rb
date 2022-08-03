@@ -1,6 +1,6 @@
 current_path = File.dirname(__FILE__)
 
-file_names = Dir["#{current_path}/data/*.txt"]
+file_names = Dir["#{current_path}/data/*.txt"].sort!
 
 face = file_names.map do |file_name|
   File.readlines(file_name).sample.chomp

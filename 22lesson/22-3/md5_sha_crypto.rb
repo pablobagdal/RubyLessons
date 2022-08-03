@@ -1,9 +1,10 @@
 require 'digest'
 
-Digest::SHA256.digest 'message'       #=> "\xABS\n\x13\xE4Y..."
+message = "hello"
+message_in_sha256 = Digest::SHA1.hexdigest message
+message_in_md5 = Digest::MD5.hexdigest message
 
-md5 = Digest::MD5.new
-md5.update 'message1'
-md5 << 'message2'                     # << is an alias for update
+puts "message: \"#{message}\""
+puts "SHA256: \"#{message_in_sha256}\""
+puts "MD5: \"#{message_in_md5}\""
 
-md5.hexdigest

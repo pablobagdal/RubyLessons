@@ -1,0 +1,53 @@
+1. Что выведет такая программа в консоль и почему?
+
+string1 = 'Я первая строка'
+
+def method
+  string2 = 'Я вторая строка'
+  puts string1
+end
+
+method
+puts string2
+
+2. Что выведет такая программа в консоль и почему?
+
+string1 = 'Я первая строка'
+
+finish = false
+until finish
+  string2 = 'Я вторая строка'
+  puts string1
+
+  finish = true
+end
+
+puts string2
+3. Что выведет такая программа в консоль и почему?
+
+string1 = 'Я первая строка'
+
+1.times do
+  string2 = 'Я вторая строка'
+  puts string1
+end
+
+puts string2
+
+4. Что выведет такая программа в консоль и почему?
+
+string1 = 'Я первая строка'
+
+class MyClass
+  def initialize
+    @string2 = 'Я вторая строка'
+  end
+
+  def print_string1
+    puts string1
+  end
+end
+
+my_class = MyClass.new
+puts @string2
+my_class.print_string1

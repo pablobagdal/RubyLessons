@@ -13,16 +13,14 @@ end
 require_relative 'lib/product.rb'
 require_relative 'lib/book.rb'
 require_relative 'lib/film.rb'
+require_relative 'lib/disk.rb'
+require_relative 'lib/basket.rb'
+require_relative 'lib/product_collection'
 
 
-leon = Film.from_file("#{__dir__}/data/films/01.txt")
-idiot = Book.from_file("#{__dir__}/data/books/01.txt")
+# product_collection = ProductCollection.from_dir('data/')
+# puts product_collection.to_a
 
-puts leon
-puts idiot
+basket = Basket.new({"lemonade": 100, "apple": 20, "juice": 30})
+puts basket
 
-begin
-  some_product = Product.from_file("/doesn't matter what the path is here")
-rescue NotImplementedError => e
-  puts "You can not create object of Product this way. Try use standart constructor(Product.new())"
-end

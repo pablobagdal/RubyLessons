@@ -27,8 +27,12 @@ class Book < Product
     @author = params[:author]
   end
 
+  def info
+    "Книга «#{@name}», #{@genre}, автор - #{@author}, #{@price} руб."
+  end
+
   def to_s
-    "Книга «#{@name}», #{@genre}, автор - #{@author}, #{@price} руб. (осталось #{@amount}) "
+    "#{info} (осталось #{@amount}) "
   end
 
   def update(params)

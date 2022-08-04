@@ -1,9 +1,11 @@
+# encoding: utf-8
 #
-# Класс Коллекция Товаров
+# Класс КоллекцияПродуктов, который может считывать все нужные продукты из
+# подкатегорий films, books и т.д.
 
-require_relative 'book.rb'
-require_relative 'film.rb'
-require_relative 'disc.rb'
+require_relative 'film'
+require_relative 'book'
+require_relative 'disc'
 
 class ProductCollection
   # Создадим константу со всеми возможными типами продуктов. Это ассоциативный
@@ -12,7 +14,7 @@ class ProductCollection
   PRODUCT_TYPES = {
     film: {dir: 'films', class: Film},
     book: {dir: 'books', class: Book},
-    disc: {dir: 'discs', class: Disc},
+    disc: {dir: 'discs', class: Disc}
   }
 
   # Конструктор коллекции принимает на вход массив продуктов, но если ничего не
@@ -60,15 +62,35 @@ class ProductCollection
     self.new(products)
   end
 
-  # sort, который сортирует товары по цене, остатку на складе или по названию (как по возрастанию, так и по убыванию):
+  def product_by_index(product_index)
+    @products[product_index - 1]
+  end
+
+  def remove_out_of_stock!
+    @products.select! {|product| product.amount > 0}
+
+    self
+  end
+
+  # Метод sort! меняет экземпляр класса ProductCollection (меняет порядок)
+  # продуктов в коллекции, поэтому он назвал с восклицательным знаком. Этот
+  # метод принимает на вход ассоциативный массив, в котором могут быть два
+  # ключа: :by и :order. Например, чтобы отсортировать продукты по возрастанию
+  # цены, можно вызвать этот метод так:
+  #
+  # collection.sort!(by: :price, order: :asc)
   def sort!(params)
+    # Делает выбор по параметру by
     case params[:by]
     when :title
-      @products.sort_by? {|product| product.to_s}
+      # Если запросили сортировку по наименованию
+      @products.sort_by! { |product| product.to_s }
     when :price
-      @products.sort_by? {|product| product.price}
+      # Если запросили сортировку по цене
+      @products.sort_by! { |product| product.price }
     when :amount
-      @products.sort_by? {|product| product.amount}
+      # Если запросили сортировку по количеству
+      @products.sort_by! { |product| product.amount }
     end
 
     # Если запросили сортировку по возрастанию
@@ -79,8 +101,12 @@ class ProductCollection
     self
   end
 
-  #  возвращает массив товаров.
+  # Простой метод, чтобы достать все продукты коллекции
   def to_a
-    @products
+  @products
+  end
+
+  def to_s
+    @products.map.with_index(1) {|product, index| "#{index}. #{product}"}.join("\n")
   end
 end

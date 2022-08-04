@@ -27,8 +27,12 @@ class Film < Product
     @director = params[:director]
   end
 
+  def info
+    "Фильм «#{@name}», #{@year}, реж. #{@director}, #{@price} руб."
+  end
+
   def to_s
-    "Фильм «#{@name}», #{@year}, реж. #{@director}, #{@price} руб. (осталось #{@amount}) "
+    "#{info} (осталось #{@amount}) "
   end
 
   def update(params)

@@ -2,7 +2,7 @@
 #
 # Класс Товар
 class Product
-  attr_writer :price, :amount
+  attr_accessor :price, :amount
 
   def self.from_file(file_path)
     raise NotImplementedError
@@ -13,8 +13,12 @@ class Product
     @amount = params[:amount].to_i
   end
 
+  def info
+    raise NotImplementedError
+  end
+
   def to_s
-    "#{@price} руб. Осталось #{@amount}шт."
+    "#{info} #{@price} руб. Осталось #{@amount}шт."
   end
 
   def update(params)

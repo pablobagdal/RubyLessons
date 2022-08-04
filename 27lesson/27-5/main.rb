@@ -14,11 +14,6 @@ require_relative 'lib/product_collection'
 require_relative 'lib/cart'
 
 collection = ProductCollection.from_dir('data/')
-#collection.sort!(by: :title, order: :asc)
-
-# collection.to_a.each do |product|
-#   puts product
-# end
 
 cart = Cart.new
 
